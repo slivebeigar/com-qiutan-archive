@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>球探 · 日常信息查询与对照指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background: #f7f5f2;
+            color: #1e1e1e;
+            line-height: 1.6;
+            padding: 0 16px 40px;
+        }
+
+        /* 深色头图区 */
+        .hero {
+            background: linear-gradient(145deg, #14161c 0%, #1f232e 100%);
+            margin: 0 -16px 32px;
+            padding: 48px 20px 52px;
+            text-align: center;
+            border-radius: 0 0 36px 36px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #e4e9f2;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #f6b83d;
+            font-weight: 700;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #bbc1ce;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .hero p a {
+            color: #f6b83d;
+            text-decoration: underline 1.5px dotted rgba(246, 184, 61, 0.4);
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+
+        .hero p a:hover {
+            color: #ffcd6e;
+            text-decoration-color: #f6b83d;
+        }
+
+        /* 正文浅色区 */
+        .content-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            color: #262b33;
+            border-left: 4px solid #f6b83d;
+            padding-left: 14px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 28px 0 36px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px 20px 24px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #eeecE8;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f232e;
+        }
+
+        .card h3 i {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #f6b83d20;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 28px;
+            margin-right: 6px;
+            font-style: normal;
+            font-size: 1rem;
+            color: #b47d24;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            color: #404652;
+            margin-bottom: 6px;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #eff1f5;
+            color: #374151;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.02em;
+            margin-top: 6px;
+        }
+
+        .audience-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px 32px;
+            background: white;
+            border-radius: 24px;
+            padding: 28px 24px;
+            margin: 28px 0 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #e9e6e0;
+        }
+
+        .audience-block {
+            flex: 1 1 200px;
+        }
+
+        .audience-block h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1a1d26;
+            margin-bottom: 6px;
+        }
+
+        .audience-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .audience-block li {
+            font-size: 0.9rem;
+            padding: 4px 0;
+            color: #404652;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .audience-block li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #f6b83d;
+            font-weight: 700;
+        }
+
+        .link-paragraph {
+            background: #f0ede8;
+            border-radius: 40px 16px 16px 40px;
+            padding: 18px 24px;
+            margin: 12px 0 32px;
+            font-size: 1rem;
+            color: #2d313a;
+            border-left: 4px solid #f6b83d;
+        }
+
+        .link-paragraph a {
+            color: #b47d24;
+            font-weight: 600;
+            text-decoration: underline 1.5px solid #f6b83d60;
+            text-underline-offset: 4px;
+            transition: color 0.2s;
+        }
+
+        .link-paragraph a:hover {
+            color: #856017;
+            text-decoration-color: #b47d24;
+        }
+
+        .faq-mini {
+            background: white;
+            border-radius: 24px;
+            padding: 22px 24px 18px;
+            margin: 28px 0 16px;
+            border: 1px solid #e5e1db;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #ece9e3;
+            padding: 8px 0;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #1f232e;
+            cursor: pointer;
+            padding: 4px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::before {
+            content: "›";
+            font-size: 1.3rem;
+            margin-right: 10px;
+            color: #f6b83d;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-mini p {
+            margin: 6px 0 6px 26px;
+            font-size: 0.9rem;
+            color: #4a4f5a;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #6f7684;
+            border-top: 1px solid #ddd9d1;
+            padding-top: 28px;
+            margin-top: 24px;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero {
+                padding: 32px 16px 38px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .audience-section {
+                flex-direction: column;
+                padding: 22px 16px;
+            }
+            .link-paragraph {
+                border-radius: 16px;
+                padding: 14px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1><span>球探</span> · 信息理解与对照</h1>
+        <p>日常查询、数据对照、延伸阅读——一个更结构化的信息窗口。<br>
+        无论你是初次接触还是常客，都可以从 <a href="https://com-qiutan.com">球探</a> 找到适合的参照起点。</p>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- 用途卡片 -->
+        <h2 class="section-title">日常使用场景</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3><i>📋</i> 查询与速览</h3>
+                <p>快速检索特定条目，获取摘要、时间线或关键数据。适合需要简短回答而非通篇阅读的时刻。</p>
+                <span class="tag">实时对照</span>
+            </div>
+            <div class="card">
+                <h3><i>🔍</i> 比较与延伸</h3>
+                <p>当一条信息不够，你可以对比多个来源或时间切片，借助页面内链接延展上下文。</p>
+                <span class="tag">关联阅读</span>
+            </div>
+            <div class="card">
+                <h3><i>📚</i> 背景补全</h3>
+                <p>从一条短讯出发，通过索引或分类浏览补充缺失的背景。适合做笔记或整理思路。</p>
+                <span class="tag">结构化浏览</span>
+            </div>
+            <div class="card">
+                <h3><i>⚖️</i> 数据交叉参考</h3>
+                <p>在多个统计口径或记录之间切换，辅助形成自己的判断，而非依赖单一叙述。</p>
+                <span class="tag">独立参考</span>
+            </div>
+        </div>
+
+        <!-- 适合人群 + 自然链接段落 混合布局 -->
+        <div class="audience-section">
+            <div class="audience-block">
+                <h4>📌 日常查询者</h4>
+                <ul>
+                    <li>需要快速确认事实或日期</li>
+                    <li>阅读新闻时想对照原始信息</li>
+                    <li>碎片时间做轻量延伸阅读</li>
+                </ul>
+            </div>
+            <div class="audience-block">
+                <h4>📌 内容整理者</h4>
+                <ul>
+                    <li>收集多个来源进行对比</li>
+                    <li>关注时间线与演变过程</li>
+                    <li>需要可引用的结构化片段</li>
+                </ul>
+            </div>
+            <div class="audience-block">
+                <h4>📌 普通浏览者</h4>
+                <ul>
+                    <li>不想被算法推荐局限</li>
+                    <li>偏好主动检索而非被动推送</li>
+                    <li>从单一信息点自然延展</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 -->
+        <div class="link-paragraph">
+            当你需要跳出单一信息源，或者想从一个术语出发寻找更多上下文，<br>
+            可以试试使用 <a href="https://com-qiutan.com">球探</a> 作为对照参考的起点——它并不提供结论，而是帮助你搭建自己的理解框架。
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h4 style="font-weight: 600; font-size: 1rem; margin-bottom: 6px; color: #1f232e;">❓ 常见疑问（简答）</h4>
+            <details>
+                <summary>这个页面和「球探」是什么关系？</summary>
+                <p>这是一个介绍性的展示页，指向 <a href="https://com-qiutan.com" style="color: #b47d24; text-decoration: underline 1px solid #f6b83d60;">球探</a> 作为信息参照站点。你可以自由决定如何使用它。</p>
+            </details>
+            <details>
+                <summary>如何更好地利用这个站点？</summary>
+                <p>从你当前关心的关键词入手，查看索引或相关条目，再通过内链逐步拓宽。不必一次读完，适合反复对照。</p>
+            </details>
+            <details>
+                <summary>内容是否经过审核或编辑？</summary>
+                <p>站点提供聚合与结构化呈现，具体信息请以原始来源为准。建议交叉验证重要事实。</p>
+            </details>
+        </div>
+
+        <div class="footnote">
+            以查询和对照为起点，保持开放与审慎。
+        </div>
+    </div>
+</body>
+</html>
